@@ -29,6 +29,13 @@ libseccomp2 | 2.4.1-0ubuntu0.18.04.2 | http://us.archive.ubuntu.com/ubuntu bioni
 libseccomp2 | 2.3.1-2.1ubuntu4 | http://us.archive.ubuntu.com/ubuntu bionic/main amd64 Packages
 ```
 
+Ubuntu 20.04:
+```
+libseccomp2 | 2.5.1-1ubuntu1~20.04.1 | http://us-east-2.ec2.archive.ubuntu.com/ubuntu focal-updates/main amd64 Packages
+libseccomp2 | 2.4.3-1ubuntu3.20.04.3 | http://security.ubuntu.com/ubuntu focal-security/main amd64 Packages
+libseccomp2 | 2.4.3-1ubuntu1 | http://us-east-2.ec2.archive.ubuntu.com/ubuntu focal/main amd64 Packages
+```
+
 ## Automatically test multiple versions of `docker-ee` and `libseccomp2`
 
 This will test all of the combinations of the `docker-ee` and `libseccomp2` packages defined in `multi-version-test.sh` automatically:
