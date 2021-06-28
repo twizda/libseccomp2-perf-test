@@ -44,12 +44,14 @@ done
 dpkg -l libseccomp2 | grep ^ii | awk '{print $1 "  " $2 " " $3 " " $4}'
 
 # output results
+echo "DISABLE_SECCOMP=${DISABLE_SECCOMP}" >> results_$(uname -r).txt
+dpkg -l libseccomp2 | grep ^ii | awk '{print $1 "  " $2 " " $3 " " $4}' >> results_$(uname -r).txt
+cp results.txt results_$(uname -r).txt
 sort -n < results.txt
 
 echo -e "\nMin: $(sort -n < results.txt | head -1)"
 echo "Max: $(sort -n < results.txt | tail -1)"
 echo "Avg: $(awk '{sum+=$1}END{printf "%0.2f\n",sum/NR}' results.txt)"
-mv results.txt results_$(uname -r).txt
 #rm results.txt
 
 # remove test container
