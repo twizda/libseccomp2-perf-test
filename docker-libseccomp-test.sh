@@ -49,7 +49,7 @@ sort -n < results.txt
 echo -e "\nMin: $(sort -n < results.txt | head -1)"
 echo "Max: $(sort -n < results.txt | tail -1)"
 echo "Avg: $(awk '{sum+=$1}END{printf "%0.2f\n",sum/NR}' results.txt)"
-rm results.txt
+#rm results.txt
 
 # remove test container
 echo -ne "\nStopping and removing test container..."
