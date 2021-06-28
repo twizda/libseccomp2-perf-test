@@ -19,12 +19,17 @@ then
 fi
 
 # loop through the test
+dpkg -l libseccomp2 | grep ^ii | awk '{print $1 "  " $2 " " $3 " " $4}' >> debug.out
+dpkg -l docker-ee | grep ^ii | awk '{print $3}' >> debug.out
+echo "DISABLE_SECCOMP=${DISABLE_SECCOMP}" >> debug.out
+
 for LOOP in $(seq 1 "${NUM_LOOPS}")
 do
   if [ "${VERBOSE}" = "true" ]
   then
     echo -e "\nLoop ${LOOP}"
   fi
+  echo -e "\nLoop ${LOOP}" >> debug.out
   STATS="$(DISABLE_SECCOMP="${DISABLE_SECCOMP}" ./docker-libseccomp-test.sh "${NUM_EXECS}" | grep -E '(Min:)|(Max:)|(Avg:)')"
   echo "${STATS}" | grep Min >> stats_min.txt
   echo "${STATS}" | grep Max >> stats_max.txt
@@ -33,6 +38,7 @@ do
   then
     echo "${STATS}"
   fi
+  echo "${STATS}" >> debug.out
 done
 
 # get averages of each stat
